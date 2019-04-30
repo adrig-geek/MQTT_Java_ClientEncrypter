@@ -42,7 +42,7 @@ public class MQTTClient implements MqttCallback {
     public void publish(String content, String topicIn){
         try {
             content = mqttEncrypter.encryptMQTTMessage(content);
-            System.out.println("Publishing message: "+content);
+            System.out.println("PUBLISH message[ " + topicIn + " ]: " +content);
             MqttMessage message = new MqttMessage(content.getBytes());
             message.setQos(qos);
             mqttClient.publish(MQTTClient.topic+topicIn, message);
@@ -74,14 +74,10 @@ public class MQTTClient implements MqttCallback {
 
     @Override
     public void deliveryComplete(IMqttDeliveryToken token) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void connectionLost(Throwable cause) {
-        // TODO Auto-generated method stub
-
     }
 
 }
