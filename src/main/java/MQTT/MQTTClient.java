@@ -32,7 +32,7 @@ public class MQTTClient implements MqttCallback {
             mqttClient.connect(connOpts);
             System.out.println("Connected");
             mqttClient.setCallback(this);
-            mqttClient.subscribe("#");
+            mqttClient.subscribe("test");
         } catch (MqttException e) {
             e.printStackTrace();
         }
@@ -42,7 +42,7 @@ public class MQTTClient implements MqttCallback {
     public void publish(String content, String topicIn){
         try {
             content = mqttEncrypter.encryptMQTTMessage(content);
-            System.out.println("PUBLISH message[ " + topicIn + " ]: " +content);
+            System.out.println("PUBLISH message[ enc/" + topicIn + " ]: " +content);
             MqttMessage message = new MqttMessage(content.getBytes());
             message.setQos(qos);
             mqttClient.publish(MQTTClient.topic+topicIn, message);

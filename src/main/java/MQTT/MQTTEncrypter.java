@@ -22,7 +22,6 @@ public class MQTTEncrypter {
 
     public String encryptMQTTMessage(String message){
         String result = aesCipher.encrypt(message);
-        System.out.println(result);
         return result;
     }
 
